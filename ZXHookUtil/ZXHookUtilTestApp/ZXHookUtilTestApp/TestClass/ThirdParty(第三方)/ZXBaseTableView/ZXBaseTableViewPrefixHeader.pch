@@ -1,0 +1,25 @@
+//
+//  ZXBaseTableViewPrefixHeader.pch
+//  ZXBaseTableViewDemo
+//
+//  Created by 李兆祥 on 2018/8/22.
+//  Copyright © 2018年 李兆祥. All rights reserved.
+//  Github地址：https://github.com/SmileZXLee/ZXBaseTableView
+
+#ifndef ZXBaseTableViewPrefixHeader_pch
+#define ZXBaseTableViewPrefixHeader_pch
+#define ZXWeakSelf(obj) autoreleasepool{} __weak typeof(obj) o##Weak = obj;
+#define ZXStrongSelf(obj) autoreleasepool{} __strong typeof(obj) obj = o##Weak;
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define ZXToast(str) [[UIApplication sharedApplication].keyWindow makeToast:str duration:1.5 position:CSToastPositionCenter]
+
+#ifdef __OBJC__
+#import "UIViewController+TableView.h"
+#import "NSObject+ZXKVO.h"
+#import "ZXBaseCell.h"
+#import "ZXBaseGlobalData.h"
+#import "UIView+Toast.h"
+#endif
+
+
+#endif /* ZXBaseTableViewPrefixHeader_pch */
