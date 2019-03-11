@@ -390,6 +390,13 @@ Demo大致分析流程：获取登录控制器，获取登录按钮，打印按�
 +(void)addBtnWithText:(NSString *)text frame:(CGRect)frame CallBack:(ZXActionBlock)callBack;
 
 /**
+ 获取按钮的所有点击事件方法
+ @param btn 目标Btn
+ @return 目标Btn的所有target和对应绑定的事件方法
+ */
++(NSMutableDictionary *)getAllTouchUpAction:(UIButton *)btn;
+
+/**
  直接调用按钮的所有点击事件方法
  @param btn 需要调用点击事件的按钮
  */
