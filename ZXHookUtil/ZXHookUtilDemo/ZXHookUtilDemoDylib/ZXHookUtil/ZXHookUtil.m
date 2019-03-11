@@ -344,6 +344,10 @@
         [[UIApplication sharedApplication].keyWindow addSubview:btn];
     });
 }
+#pragma mark 获取按钮的所有点击事件方法
++(NSMutableDictionary *)getAllTouchUpAction:(UIButton *)btn{
+    return [btn getAllTouchUpAction];
+}
 #pragma mark 直接调用按钮的所有点击事件方法
 +(void)callBtnActions:(UIButton *)btn{
     [btn callBtnActions];

@@ -414,6 +414,12 @@
  @param callBack 按钮点击事件回调
  */
 +(void)addBtnWithText:(NSString *)text frame:(CGRect)frame CallBack:(ZXActionBlock)callBack;
+/**
+ 获取按钮的所有点击事件方法
+ @param btn 目标Btn
+ @return 目标Btn的所有target和对应绑定的事件方法
+ */
++(NSMutableDictionary *)getAllTouchUpAction:(UIButton *)btn;
 
 /**
  直接调用按钮的所有点击事件方法
