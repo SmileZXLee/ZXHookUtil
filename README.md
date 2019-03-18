@@ -2,7 +2,7 @@
 ### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
 ## Demo
 ### 使用方法追踪分析sign校验规则，下图为hook测试App的截图，ZXHookUtilTestApp项目即为测试App。
-![Image text](http://www.zxlee.cn/methodTrace.png) 
+![Image text](ZXHookUtil/DemoImg/methodTrace.png) 
 Demo大致分析流程：获取登录控制器，获取登录按钮，打印按钮绑定事件定位登录函数，使用hopper分析登录函数汇编即可快速定位登录操作中使用到的网络请求类、加密类，为这些类添加方法追踪，打印结果：'['所连接的即为一组方法的call和return，方法中嵌套包含的即为此方法中调用的其他方法，添加追踪目标类即可自动追踪其内部方法调用与调用层级并打印，加密协议已一目了然。
 ***
 ## 其他主要工具方法
