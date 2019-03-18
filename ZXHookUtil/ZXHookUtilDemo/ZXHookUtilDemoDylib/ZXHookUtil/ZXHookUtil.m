@@ -351,6 +351,7 @@
 #pragma mark 直接调用按钮的所有点击事件方法
 +(void)callBtnActions:(UIButton *)btn{
     [btn callBtnActions];
+    [ZXHookUtil addClassTrace:@"类名"];
 }
 #pragma mark - WebView相关
 #pragma mark 获取UIWebView的html
