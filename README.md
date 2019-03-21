@@ -7,12 +7,6 @@ Demo大致分析流程：获取登录控制器，获取登录按钮，打印按�
 ```objective-c
 /**
  添加方法跟踪
- @param className 需要追踪的类名
- */
- [ZXHookUtil addClassTrace:className];
-
-/**
- 添加方法跟踪
  @param classNames 需要追踪的类名数组
  */
  [ZXHookUtil addClassTrace:classNames];
@@ -34,7 +28,7 @@ Demo大致分析流程：获取登录控制器，获取登录按钮，打印按�
 /**
  添加方法跟踪
  @param className 需要追踪的类名
- @param methodList 需要追踪的对应类中的具体方法，传nin即为类中所有方法
+ @param methodList 需要追踪的对应类中的具体方法，传nil即为类中所有方法
  @param jsonClassList 方法打印中需要转为json的方法名数组
  */
 [ZXHookUtil addClassTrace:className methodList:methodList jsonClassList:jsonClassList];
