@@ -1,5 +1,5 @@
 # ZXHookUtil
-### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
+### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[ANYMethodLog](https://github.com/qhd/ANYMethodLog)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
 ## Demo
 ### 使用方法追踪分析sign校验规则，下图为hook测试App的截图，ZXHookUtilTestApp项目即为测试App。
 ![Image text](https://github.com/SmileZXLee/ZXHookUtil/blob/master/DemoImg/methodTrace.png?raw=true) 
