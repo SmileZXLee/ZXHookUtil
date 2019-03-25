@@ -36,6 +36,17 @@ if(pwdTf){
 }
 
 ```
+### 拦截或修改全局请求
+```objective-c
+[ZXHookUtil handleRequest:^NSURLRequest *(NSURLRequest *request) {
+        NSLog(@"%@",request);
+        return request;
+    }];
+```
+### 清除keychain数据
+```objective-c
+[ZXHookUtil clearKeyChain];
+```
 
 ***
 ## 主要工具方法
