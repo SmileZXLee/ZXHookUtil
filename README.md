@@ -1,38 +1,42 @@
 # ZXHookUtil
-### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
+### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[ANYMethodLog](https://github.com/qhd/ANYMethodLog)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
 ## Demo
 ### 使用方法追踪分析sign校验规则，下图为hook测试App的截图，ZXHookUtilTestApp项目即为测试App。
+```objective-c
+[ZXHookUtil addClassTrace:@"LoginVC" jsonClassList:@[@"LoginModel"]];
+[ZXHookUtil addClassTrace:@"HttpRequest"];
+[ZXHookUtil addClassTrace:@"EncryptionTool"];
+
+```
 ![Image text](https://github.com/SmileZXLee/ZXHookUtil/blob/master/DemoImg/methodTrace.png?raw=true) 
 Demo大致分析流程：获取登录控制器，获取登录按钮，打印按钮绑定事件定位登录函数，使用hopper分析登录函数汇编即可快速定位登录操作中使用到的网络请求类、加密类，为这些类添加方法追踪，打印结果：'['所连接的即为一组方法的call和return，方法中嵌套包含的即为此方法中调用的其他方法，添加追踪目标类即可自动追踪其内部方法调用与调用层级并打印，加密协议已一目了然。
+
+### 直接获取当前控制器的按钮，无需关注页面UI层级
 ```objective-c
-/**
- 添加方法跟踪
- @param classNames 需要追踪的类名数组
- */
- [ZXHookUtil addClassTrace:classNames];
+//获取登录按钮
+NSArray *btnsArr = [ZXHookUtil getUIInView:loginVC.view text:@"登录" type:UITypeButton];
+if(btnsArr.count){
+    UIButton *loginBtn = btnsArr[0];
+    //打印登录按钮所有事件
+    NSLog(@"loginBtnTar--%@",[ZXHookUtil getAllTouchUpAction:loginBtn]);
+    //直接调用登录按钮的所有点击事件
+    [ZXHookUtil callBtnActions:loginBtn];
+}
 
-/**
- 添加方法跟踪
- @param className 需要追踪的类名
- @param methodList 需要追踪的对应类中的具体方法，传nil即为类中所有方法
- */
-[ZXHookUtil addClassTrace:className methodList:methodList];
-
-/**
- 添加方法跟踪
- @param className 需要追踪的类名
- @param jsonClassList 方法打印中需要转为json的方法名数组
- */
-[ZXHookUtil addClassTrace:className methodList:methodList];
-
-/**
- 添加方法跟踪
- @param className 需要追踪的类名
- @param methodList 需要追踪的对应类中的具体方法，传nil即为类中所有方法
- @param jsonClassList 方法打印中需要转为json的方法名数组
- */
-[ZXHookUtil addClassTrace:className methodList:methodList jsonClassList:jsonClassList];
 ```
+### 直接获取当前控制器的UITextField，无需关注页面UI层级
+```objective-c
+UITextField *loginTf = [ZXHookUtil getTfInView:loginVC.view placeHolder:@"请输入用户名"];
+UITextField *pwdTf = [ZXHookUtil getTfInView:loginVC.view placeHolder:@"请输入密码"];
+if(loginTf){
+    loginTf.text = @"123";
+}
+if(pwdTf){
+    pwdTf.text = @"123";
+}
+
+```
+
 ***
 ## 主要工具方法
 ```objective-c
