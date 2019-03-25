@@ -25,6 +25,7 @@ static NSString *lastBelong;
     NSMutableArray *propertyNamesArr = [NSMutableArray array];
     u_int count;
     objc_property_t *properties  = class_copyPropertyList([self class],&count);
+    if(!properties)return nil;
     Method *methods  = class_copyMethodList([self class],&count);
     for(NSUInteger i = 0;i < count;i++){
         const char *propertyNameChar = property_getName(properties[i]);
@@ -49,6 +50,7 @@ static NSString *lastBelong;
     u_int methodCount;
     objc_property_t *properties  = class_copyPropertyList([self class],&proCount);
     Method *instanceMethods  = class_copyMethodList([self class],&methodCount);
+    if(!properties || !instanceMethods)return nil;
     for(NSUInteger i = 0;i < proCount;i++){
         ZXHookClassPro *hookClassPro = [[ZXHookClassPro alloc]init];
         objc_property_t pro = properties[i];

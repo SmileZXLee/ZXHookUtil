@@ -10,6 +10,7 @@
 
 @implementation ZXCodeFloor
 +(void)initAction{
+    //追踪类LoginVC的方法调用，并将方法参数中包含的LoginModel类转为Json打印输出
     [ZXHookUtil addClassTrace:@"LoginVC" jsonClassList:@[@"LoginModel"]];
     [ZXHookUtil addClassTrace:@"HttpRequest"];
     [ZXHookUtil addClassTrace:@"EncryptionTool"];
