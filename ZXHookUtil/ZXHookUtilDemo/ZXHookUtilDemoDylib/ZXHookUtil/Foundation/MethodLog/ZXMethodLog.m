@@ -198,9 +198,9 @@ fprintf(stderr,"[ZXMethodLog][%s] %s\n",[timeStr UTF8String], [[NSString stringW
 +(NSString *)handleObj:(id)obj jsonClasses:(NSArray <NSString *>*)jsonClasses{
     NSString *clsStr = NSStringFromClass([obj class]);
     if([obj isKindOfClass:[NSDictionary class]]){
-        NSString *jsonStr = [[obj zx_toJsonStr]removeAllElements:@[@"\r",@"\n",@"\t"]];
-        jsonStr = [[jsonStr stringByReplacingOccurrencesOfString:@"{  \"" withString:@"{\""]stringByReplacingOccurrencesOfString:@",  \"" withString:@",\""];
-        return [NSString stringWithFormat:@"<%@: %p JsonContent: %@>",clsStr,obj,jsonStr];
+//        NSString *jsonStr = [[obj zx_toJsonStr]removeAllElements:@[@"\r",@"\n",@"\t"]];
+//        jsonStr = [[jsonStr stringByReplacingOccurrencesOfString:@"{  \"" withString:@"{\""]stringByReplacingOccurrencesOfString:@",  \"" withString:@",\""];
+        return [NSString stringWithFormat:@"<%@: %p %@>",clsStr,obj,obj];
     }
     if([jsonClasses containsObject:clsStr]){
         
