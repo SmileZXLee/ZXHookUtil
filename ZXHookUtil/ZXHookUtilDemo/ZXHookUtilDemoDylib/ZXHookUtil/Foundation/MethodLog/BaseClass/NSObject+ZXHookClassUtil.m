@@ -226,8 +226,8 @@ static NSString *lastBelong;
 
 +(BOOL)isFoundationClass{
     NSString *classBundle = [NSString stringWithFormat:@"%@",[NSBundle bundleForClass:self]];
-    //return [classBundle hasSuffix:@"(loaded)"];
-    return [classBundle containsString:@"</System/Library/Frameworks/Foundation.framework>"];
+    
+    return [classBundle containsString:@"</System/Library/Frameworks/Foundation.framework>"] || [classBundle containsString:@"</System/Library/Frameworks/UIKit.framework>"] || [classBundle containsString:@"</System/Library/Frameworks/CoreFoundation.framework>"];
 }
 +(BOOL)isFoundationClass:(Class)cls{
     NSString *classBundle = [NSString stringWithFormat:@"%@",[NSBundle bundleForClass:cls]];

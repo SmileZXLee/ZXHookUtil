@@ -49,6 +49,7 @@
 }
 +(BOOL)isFoudationClass:(id)obj{
     NSString *classBundle = [NSString stringWithFormat:@"%@",[NSBundle bundleForClass:[obj class]]];
-    return [classBundle containsString:@"</System/Library/Frameworks/Foundation.framework>"];
+    
+    return [classBundle containsString:@"</System/Library/Frameworks/Foundation.framework>"] || [classBundle containsString:@"</System/Library/Frameworks/UIKit.framework>"] || [classBundle containsString:@"</System/Library/Frameworks/CoreFoundation.framework>"];
 }
 @end
