@@ -93,6 +93,14 @@
 		74D5BEDB221A93FE006C9802 /* ZXMethodLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D5BED9221A93FE006C9802 /* ZXMethodLog.m */; };
 		74D5BEEA221AD462006C9802 /* ANYMethodLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D5BEE8221AD462006C9802 /* ANYMethodLog.m */; };
 		74D5BEEB221AD462006C9802 /* ANYMethodLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D5BEE9221AD462006C9802 /* ANYMethodLog.h */; };
+		74DECD3022951F1D0025E8D2 /* ZXBlockLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DECD2822951F1D0025E8D2 /* ZXBlockLog.m */; };
+		74DECD3122951F1D0025E8D2 /* CTBlockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DECD2922951F1D0025E8D2 /* CTBlockDescription.m */; };
+		74DECD3222951F1D0025E8D2 /* ZXBlockLogTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DECD2A22951F1D0025E8D2 /* ZXBlockLogTool.h */; };
+		74DECD3322951F1D0025E8D2 /* ZXBlockLogResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DECD2B22951F1D0025E8D2 /* ZXBlockLogResult.h */; };
+		74DECD3422951F1D0025E8D2 /* CTBlockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DECD2C22951F1D0025E8D2 /* CTBlockDescription.h */; };
+		74DECD3522951F1D0025E8D2 /* ZXBlockLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DECD2D22951F1D0025E8D2 /* ZXBlockLog.h */; };
+		74DECD3622951F1D0025E8D2 /* ZXBlockLogTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DECD2E22951F1D0025E8D2 /* ZXBlockLogTool.m */; };
+		74DECD3722951F1D0025E8D2 /* ZXBlockLogResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DECD2F22951F1D0025E8D2 /* ZXBlockLogResult.m */; };
 		74EC02132217AD9000EB2552 /* MDConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EC02122217AD9000EB2552 /* MDConfig.plist */; };
 		74EC021D2217AD9100EB2552 /* libZXHookUtilDemoDylib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74EC021C2217AD9100EB2552 /* libZXHookUtilDemoDylib.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		74EC02222217AD9100EB2552 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74EC02212217AD9100EB2552 /* JavaScriptCore.framework */; };
@@ -240,6 +248,14 @@
 		74D5BED9221A93FE006C9802 /* ZXMethodLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXMethodLog.m; sourceTree = "<group>"; };
 		74D5BEE8221AD462006C9802 /* ANYMethodLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANYMethodLog.m; sourceTree = "<group>"; };
 		74D5BEE9221AD462006C9802 /* ANYMethodLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANYMethodLog.h; sourceTree = "<group>"; };
+		74DECD2822951F1D0025E8D2 /* ZXBlockLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlockLog.m; sourceTree = "<group>"; };
+		74DECD2922951F1D0025E8D2 /* CTBlockDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTBlockDescription.m; sourceTree = "<group>"; };
+		74DECD2A22951F1D0025E8D2 /* ZXBlockLogTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlockLogTool.h; sourceTree = "<group>"; };
+		74DECD2B22951F1D0025E8D2 /* ZXBlockLogResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlockLogResult.h; sourceTree = "<group>"; };
+		74DECD2C22951F1D0025E8D2 /* CTBlockDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTBlockDescription.h; sourceTree = "<group>"; };
+		74DECD2D22951F1D0025E8D2 /* ZXBlockLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlockLog.h; sourceTree = "<group>"; };
+		74DECD2E22951F1D0025E8D2 /* ZXBlockLogTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlockLogTool.m; sourceTree = "<group>"; };
+		74DECD2F22951F1D0025E8D2 /* ZXBlockLogResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlockLogResult.m; sourceTree = "<group>"; };
 		74EC020A2217AD8F00EB2552 /* ZXHookUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZXHookUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74EC020D2217AD8F00EB2552 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		74EC020E2217AD9000EB2552 /* Target.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Target.plist; sourceTree = "<group>"; };
@@ -307,6 +323,7 @@
 		74D3524E22334E460093F93F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				74DECD2722951F1D0025E8D2 /* ZXBlockLog */,
 				74D352F4223660EC0093F93F /* Encryption */,
 				74D352D82235633A0093F93F /* HttpRequest */,
 				74D5BED7221A93D8006C9802 /* MethodLog */,
@@ -537,6 +554,21 @@
 			path = MethodLog;
 			sourceTree = "<group>";
 		};
+		74DECD2722951F1D0025E8D2 /* ZXBlockLog */ = {
+			isa = PBXGroup;
+			children = (
+				74DECD2D22951F1D0025E8D2 /* ZXBlockLog.h */,
+				74DECD2822951F1D0025E8D2 /* ZXBlockLog.m */,
+				74DECD2C22951F1D0025E8D2 /* CTBlockDescription.h */,
+				74DECD2922951F1D0025E8D2 /* CTBlockDescription.m */,
+				74DECD2A22951F1D0025E8D2 /* ZXBlockLogTool.h */,
+				74DECD2E22951F1D0025E8D2 /* ZXBlockLogTool.m */,
+				74DECD2B22951F1D0025E8D2 /* ZXBlockLogResult.h */,
+				74DECD2F22951F1D0025E8D2 /* ZXBlockLogResult.m */,
+			);
+			path = ZXBlockLog;
+			sourceTree = "<group>";
+		};
 		74EC01FE2217AD8F00EB2552 = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +760,8 @@
 			files = (
 				74D352D12235086E0093F93F /* ZXRequestBlock.h in Headers */,
 				74D352A322334E6C0093F93F /* NSObject+ZXToDic.h in Headers */,
+				74DECD3422951F1D0025E8D2 /* CTBlockDescription.h in Headers */,
+				74DECD3222951F1D0025E8D2 /* ZXBlockLogTool.h in Headers */,
 				74D35305223668110093F93F /* Base64.h in Headers */,
 				74D3528122334E6C0093F93F /* NSObject+ZXSQliteHandle.h in Headers */,
 				74D5BEDA221A93FE006C9802 /* ZXMethodLog.h in Headers */,
@@ -737,6 +771,7 @@
 				74D352AB22334E6C0093F93F /* NSObject+ZXToModel.h in Headers */,
 				74EC026D2217C48E00EB2552 /* ZXHookClass.h in Headers */,
 				74D3528422334E6C0093F93F /* ZXClassArchived.h in Headers */,
+				74DECD3522951F1D0025E8D2 /* ZXBlockLog.h in Headers */,
 				74D5BEEB221AD462006C9802 /* ANYMethodLog.h in Headers */,
 				74D3529222334E6C0093F93F /* NSString+ZXRegular.h in Headers */,
 				74D3529722334E6C0093F93F /* NSString+ZXDataConvert.h in Headers */,
@@ -745,6 +780,7 @@
 				74D3530A2236ACC00093F93F /* ZXImagePicker.h in Headers */,
 				74EC02712217C55700EB2552 /* ZXHookClassPro.h in Headers */,
 				74EC024D2217AD9200EB2552 /* ZXHookUtilDemoDylib.h in Headers */,
+				74DECD3322951F1D0025E8D2 /* ZXBlockLogResult.h in Headers */,
 				74D352DB2235638B0093F93F /* ZXHttpRequest.h in Headers */,
 				74EC02322217AD9200EB2552 /* MDCycriptManager.h in Headers */,
 				74D3528F22334E6C0093F93F /* NSObject+ZXDataConvertRule.h in Headers */,
@@ -950,13 +986,16 @@
 				748CCFF622184533003418B9 /* NSString+ZXHookRegular.m in Sources */,
 				74D352BB2234EF670093F93F /* UIButton+ZXAddAction.m in Sources */,
 				74EC022B2217AD9100EB2552 /* ZXHookUtilDemoDylib.mm in Sources */,
+				74DECD3022951F1D0025E8D2 /* ZXBlockLog.m in Sources */,
 				74D352ED223643E10093F93F /* ZXShowImgView.m in Sources */,
 				74D3529822334E6C0093F93F /* NSDictionary+ZXSafetySet.m in Sources */,
 				74D352CE2235086E0093F93F /* ZXURLProtocol.m in Sources */,
 				74D5BED6221A7E03006C9802 /* UIButton+ZXHookAction.m in Sources */,
 				74D352D02235086E0093F93F /* ZXHttpIPGet.m in Sources */,
 				74D3529A22334E6C0093F93F /* NSObject+ZXDataConvertRule.m in Sources */,
+				74DECD3722951F1D0025E8D2 /* ZXBlockLogResult.m in Sources */,
 				74EC02382217AD9200EB2552 /* MDMethodTrace.m in Sources */,
+				74DECD3622951F1D0025E8D2 /* ZXBlockLogTool.m in Sources */,
 				74D352B72233F5680093F93F /* UIView+Toast.m in Sources */,
 				74D3529C22334E6C0093F93F /* ZXDecimalNumberTool.m in Sources */,
 				74D3528322334E6C0093F93F /* ZXDataStoreSQlite.m in Sources */,
@@ -978,6 +1017,7 @@
 				74D352E122357DD30093F93F /* ZXShadowView.m in Sources */,
 				74D3528522334E6C0093F93F /* ZXDataStoreCache.m in Sources */,
 				74D352AA22334E6C0093F93F /* NSObject+ZXToDic.m in Sources */,
+				74DECD3122951F1D0025E8D2 /* CTBlockDescription.m in Sources */,
 				74D352A622334E6C0093F93F /* NSObject+ZXToJson.m in Sources */,
 				74D352F8223661080093F93F /* ZXEncryption.m in Sources */,
 				74D352CF2235086E0093F93F /* ZXRequestBlock.m in Sources */,
@@ -1110,7 +1150,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Y2YPWFYNQ;
+				DEVELOPMENT_TEAM = XW95KAQH96;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -1169,7 +1209,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = 4Y2YPWFYNQ;
+				DEVELOPMENT_TEAM = XW95KAQH96;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -1222,7 +1262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Y2YPWFYNQ;
+				DEVELOPMENT_TEAM = XW95KAQH96;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZXHookUtilDemo/Info.plist;
 				MONKEYDEV_ADD_SUBSTRATE = YES;
@@ -1243,7 +1283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Y2YPWFYNQ;
+				DEVELOPMENT_TEAM = XW95KAQH96;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZXHookUtilDemo/Info.plist;
 				MONKEYDEV_ADD_SUBSTRATE = YES;

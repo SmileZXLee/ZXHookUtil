@@ -26,6 +26,7 @@
 #import "UIButton+ZXAddAction.h"
 #import "ZXImagePicker.h"
 #import "ZXEncryption.h"
+#import "ZXBlockLog.h"
 
 #define ZXToast(str) [[UIApplication sharedApplication].keyWindow makeToast:[NSString stringWithFormat:@"%@",str] duration:1.5 position:CSToastPositionCenter]
 @interface ZXHookUtil : NSObject
