@@ -51,8 +51,6 @@ if(pwdTf){
 ```objective-c
 NSLog(ZXBlockLog(block));
 ```
-
-### 打印block参数
 ***
 ## 主要工具方法
 ```objective-c
