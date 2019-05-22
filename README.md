@@ -47,7 +47,12 @@ if(pwdTf){
 ```objective-c
 [ZXHookUtil clearKeyChain];
 ```
+### 打印block参数，具体例子参见[ZXBlockLog](https://github.com/SmileZXLee/ZXBlockLog)
+```objective-c
+NSLog(ZXBlockLog(block));
+```
 
+### 打印block参数
 ***
 ## 主要工具方法
 ```objective-c
