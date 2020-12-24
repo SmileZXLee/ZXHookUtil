@@ -10,7 +10,10 @@
 #import "NSDictionary+ZXDataConvert.h"
 #import "NSArray+ZXDataConvert.h"
 #import "NSData+ZXDataConvert.h"
-#import "ZXDataHandle.h"
+#import "ZXDataType.h"
+#import "NSObject+ZXToDic.h"
+#import "NSDictionary+ZXSafetySet.h"
+#import "NSString+ZXRegular.h"
 @implementation NSObject (ZXToJson)
 -(NSString *)zx_toJsonStr{
     NSString *resJsonStr = nil;
@@ -35,7 +38,6 @@
     }else if(dataType == DataTypeStr){
         resJsonStr = (NSString *)self;
     }else{
-        
         id resDic = [self zx_toDic];
         resJsonStr = [resDic zx_dicToJsonStr];
     }
@@ -70,5 +72,27 @@
     }
     sumStr = sumStr.length ? [sumStr substringToIndex:sumStr.length - 1] : sumStr;
     return sumStr;
+}
+-(NSData *)zx_toJsonData{
+    NSData *jsonData;
+    if([self isKindOfClass:[NSData class]]){
+        return (NSData *)self;
+    }
+    DataType dataType = [ZXDataType zx_dataType:self];
+    if(dataType == DataTypeDic){
+        jsonData = [((NSDictionary *)self) zx_dicToJSONData];
+    }else if(dataType == DataTypeArr){
+        id fObj = ((NSArray *)self).firstObject;
+        if(fObj && [fObj isKindOfClass:[NSDictionary class]]){
+            jsonData = [((NSArray *)self) zx_arrToJSONData];
+        }else{
+            jsonData = [[self zx_toJsonStr]dataUsingEncoding:NSUTF8StringEncoding];
+        }
+    }else if(dataType == DataTypeStr){
+        jsonData = [((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding];
+    }else{
+        jsonData = [[self zx_toJsonStr]dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    return jsonData;
 }
 @end

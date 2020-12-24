@@ -21,8 +21,6 @@
     CTBlockDescription *blockDec = [[CTBlockDescription alloc]initWithBlock:block];
     ZXBlockLogResult *logResult = [[ZXBlockLogResult alloc]initWithMethodSignature:blockDec.blockSignature];
     return logResult;
-    
-    
 }
 
 @end

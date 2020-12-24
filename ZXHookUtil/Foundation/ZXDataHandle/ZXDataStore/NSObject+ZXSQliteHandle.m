@@ -7,10 +7,17 @@
 //  GitHub:https://github.com/SmileZXLee/ZXDataHandle
 
 #import "NSObject+ZXSQliteHandle.h"
-#import "ZXDataHandle.h"
+#import "NSObject+ZXToModel.h"
+#import "NSDictionary+ZXSafetySet.h"
+#import "ZXDataStoreSQlite.h"
+#import "ZXDataType.h"
+#import "NSString+ZXRegular.h"
+#import "ZXDataStoreSQlite.h"
+#import "NSMutableArray+ZXSafetySet.h"
 #import <sqlite3.h>
 #import "NSObject+ZXGetProperty.h"
 #import "NSObject+ZXSafetySet.h"
+#import "ZXDataHandleLog.h"
 #import <objc/message.h>
 #define TbName NSStringFromClass([self class])
 @implementation NSObject (ZXSQliteHandle)
@@ -47,7 +54,7 @@
                         
                     }
                 }
-                sqlResult res = [ZXDataStoreSQlite executeSqls:sqlArr];
+                SqlResult *res = [ZXDataStoreSQlite executeSqls:sqlArr];
                 return res.success;
             }
         }
@@ -59,7 +66,7 @@
         if(updateTableSucc){
             NSString* insertSql = [self getAlertSqlWithObj:self alertType:AlertTypeInsert];
             if(insertSql.length){
-                sqlResult res = [ZXDataStoreSQlite executeSql:insertSql res:NO];
+                SqlResult *res = [ZXDataStoreSQlite executeSql:insertSql res:NO];
                 return res.success;
             }
         }else{
@@ -79,7 +86,7 @@
     NSString *whereStr = [[self class] getWhereSqlWithObj:where];
     NSString *whereSql = whereStr.length ? [NSString stringWithFormat:@"WHERE %@",whereStr] : @"";
     NSString *dropSql = [NSString stringWithFormat:@"DELETE FROM %@ %@",TbName,whereSql];
-    sqlResult res = [ZXDataStoreSQlite executeSql:dropSql res:NO];
+    SqlResult *res = [ZXDataStoreSQlite executeSql:dropSql res:NO];
     return res.success;
 }
 
@@ -95,7 +102,7 @@
     NSString *whereStr = [self getWhereSqlWithObj:where];
     NSString *whereSql = whereStr.length ? [NSString stringWithFormat:@"WHERE %@",whereStr] : @"";
     NSString* quarySql = [NSString stringWithFormat:@"SELECT * FROM %@ %@",TbName,whereSql];
-    sqlResult res = [ZXDataStoreSQlite executeSql:quarySql res:YES];
+    SqlResult *res = [ZXDataStoreSQlite executeSql:quarySql res:YES];
     if(res.resData.count){
         NSArray *selfModelArr = [self zx_modelWithObj:res.resData];
         return selfModelArr;
@@ -121,7 +128,7 @@
         NSString *whereSql = whereStr.length ? [NSString stringWithFormat:@"WHERE %@",whereStr] : @"";
         NSString *setSql = [self getAlertSqlWithObj:self alertType:AlertTypeUpdate];
         NSString *updateSql = [NSString stringWithFormat:@"%@ %@",setSql,whereSql];
-        sqlResult res = [ZXDataStoreSQlite executeSql:updateSql res:NO];
+        SqlResult *res = [ZXDataStoreSQlite executeSql:updateSql res:NO];
         return res.success;
     }else{
         ZXDataHandleLog(@"表字段更新出错，请检查表：%@",TbName);
@@ -185,7 +192,7 @@
         NSString *whereStr = [self getWhereSqlWithObj:where];
         NSString *whereSql = whereStr.length ? [NSString stringWithFormat:@"WHERE %@",whereStr] : @"";
         NSString *updateSql = [NSString stringWithFormat:@"%@ %@",alertSql,whereSql];
-        sqlResult res = [ZXDataStoreSQlite executeSql:updateSql res:NO];
+        SqlResult *res = [ZXDataStoreSQlite executeSql:updateSql res:NO];
         return res.success;
     }
     return NO;
@@ -228,7 +235,7 @@
     if(hasValue){
         creatTableSql = [creatTableSql substringToIndex:creatTableSql.length - 1];
         creatTableSql = [creatTableSql stringByAppendingString:@")"];
-        sqlResult res = [ZXDataStoreSQlite executeSql:creatTableSql res:NO];
+        SqlResult *res = [ZXDataStoreSQlite executeSql:creatTableSql res:NO];
         return res.success;
     }
     return NO;
@@ -239,7 +246,7 @@
         return YES;
     }
     NSString *tbNamesSql = [NSString stringWithFormat:@"PRAGMA TABLE_INFO(%@)",TbName];
-    sqlResult res = [ZXDataStoreSQlite executeSql:tbNamesSql res:YES];
+    SqlResult *res = [ZXDataStoreSQlite executeSql:tbNamesSql res:YES];
     NSMutableArray *fieldsArr = [NSMutableArray array];
     NSMutableDictionary *prosMuDic = [NSMutableDictionary dictionary];
     [self getEnumPropertyNamesCallBack:^(NSString *proName, NSString *proType) {
@@ -276,7 +283,7 @@
 #pragma mark 删除当前表
 +(BOOL)zx_dbDropTable{
     NSString *dropTableSql = [NSString stringWithFormat:@"DROP TABLE IF EXISTS %@",TbName];
-    sqlResult res = [ZXDataStoreSQlite executeSql:dropTableSql res:NO];
+    SqlResult *res = [ZXDataStoreSQlite executeSql:dropTableSql res:NO];
     if(res.success){
         [[ZXDataStoreSQlite shareInstance].allJudgedExistTb zx_arrSafetyRemoveObj:TbName];
     }
@@ -289,7 +296,7 @@
         return YES;
     }
     NSString *isExistsSql = [NSString stringWithFormat:@"SELECT COUNT(*) FROM SQLITE_MASTER WHERE TYPE='table' AND NAME='%@'",tbName];
-    sqlResult res1 = [ZXDataStoreSQlite executeSql:isExistsSql res:YES];
+    SqlResult *res1 = [ZXDataStoreSQlite executeSql:isExistsSql res:YES];
     NSArray *countsArr = res1.resData;
     if(countsArr && countsArr.count){
         NSDictionary *firstDic = countsArr.firstObject;

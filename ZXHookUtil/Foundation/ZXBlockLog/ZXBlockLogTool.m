@@ -12,10 +12,19 @@
 + (NSString *)getDecWithType:(const char *)type{
     NSDictionary *typeMapperDic = [self getTypeMapperDic];
     NSString *typeStr = [NSString stringWithUTF8String:type];
+    
     if([typeMapperDic.allKeys containsObject:typeStr]){
         return typeMapperDic[typeStr];
     }
     NSRange typeRange = [typeStr rangeOfString:@"\".*?\"" options:NSRegularExpressionSearch];
+    if(typeRange.location == NSNotFound){
+        if([typeStr hasPrefix:@"T@"]){
+            return @"id";
+        }else{
+            return [NSString stringWithFormat:@"[变量类型识别失败，原类型为]%@",typeStr];
+        }
+        
+    }
     NSString *resTypeStr = [typeStr substringWithRange:typeRange];
     resTypeStr = [[resTypeStr stringByReplacingOccurrencesOfString:@"\"" withString:@""]stringByAppendingString:@" *"];
     return resTypeStr ;

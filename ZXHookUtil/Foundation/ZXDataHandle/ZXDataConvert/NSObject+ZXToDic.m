@@ -8,14 +8,14 @@
 
 #import "NSObject+ZXToDic.h"
 #import "ZXDataType.h"
-#import "ZXDataHandle.h"
 #import "NSObject+ZXGetProperty.h"
 #import "NSObject+ZXSafetySet.h"
 #import "NSObject+ZXDataConvertRule.h"
 #import "NSString+ZXDataConvert.h"
+#import "NSObject+ZXToJson.h"
+#import "NSDictionary+ZXSafetySet.h"
 @implementation NSObject (ZXToDic)
 -(id)zx_toDic{
-    
     DataType dataType = [ZXDataType zx_dataType:self];
     if(dataType == DataTypeDic){
         return self;
@@ -48,15 +48,20 @@
     [[self class] getEnumPropertyNamesCallBack:^(NSString *proName, NSString *proType) {
         id value = [self zx_objSafetyReadForKey:proName];
         proName = [[self class] getReplacedProName:proName];
+        BOOL isinIgnorePros = [[self class] isinIgnorePros:proName];
         DataType dataType = [ZXDataType zx_dataType:value];
-        if(value != NULL){
+        if(value != NULL && !isinIgnorePros){
             if(dataType == DataTypeStr || [value isKindOfClass:[NSNumber class]]){
                 
             }else if(dataType == DataTypeArr){
                 NSArray *valueArr = (NSArray *)value;
                 NSMutableArray *resValueArr = [NSMutableArray array];
                 for (id subObj in valueArr) {
-                    id resSubObj = [subObj zx_toDic];
+                    DataType dataType = [ZXDataType zx_dataType:subObj];
+                    id resSubObj = subObj;
+                    if(!(dataType == DataTypeStr || [value isKindOfClass:[NSNumber class]])){
+                        resSubObj = [subObj zx_toDic];
+                    }
                     [resValueArr addObject:resSubObj];
                 }
                 value = [resValueArr mutableCopy];

@@ -7,10 +7,10 @@
 //  GitHub:https://github.com/SmileZXLee/ZXDataHandle
 
 #import "ZXDataStoreSQlite.h"
-#import "ZXDataHandle.h"
-#import "ZXDataStoreCache.h"
+#import "ZXDataHandleLog.h"
 #import <sqlite3.h>
 #import "NSString+ZXRegular.h"
+#import "NSDictionary+ZXSafetySet.h"
 @implementation ZXDataStoreSQlite
 static sqlite3 *db;
 + (instancetype)shareInstance{
@@ -55,9 +55,9 @@ static sqlite3 *db;
     return (__bridge id)(db);
 }
 
-+(sqlResult)executeSql:(NSString *)sql res:(BOOL)hasRes{
++(SqlResult *)executeSql:(NSString *)sql res:(BOOL)hasRes{
     [self openDb];
-    sqlResult res = {NO,NULL,nil};
+    SqlResult *res = [[SqlResult alloc]init];
     char *error = NULL;
     int result = -1;
     sqlite3_stmt *stmt;
@@ -127,8 +127,8 @@ static sqlite3 *db;
     }
     return res;
 }
-+(sqlResult)executeSqls:(NSArray *)sqls{
-    sqlResult res = {NO,NULL,nil};
++(SqlResult *)executeSqls:(NSArray *)sqls{
+    SqlResult *res = [[SqlResult alloc]init];
     if(!sqls.count){
         return res;
     }
@@ -187,7 +187,9 @@ static sqlite3 *db;
             }
         }
     }
-    
+    if(subT.length == 1){
+        subT = [subT lowercaseString];
+    }
     NSDictionary *sqlValueMapper = [self sqlValueMapper];
     NSString *sqlValueType = [sqlValueMapper zx_dicSafetyReadForKey:subT];
     

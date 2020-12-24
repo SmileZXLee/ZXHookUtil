@@ -39,6 +39,6 @@
     impleArgs = impleArgs.length ? [impleArgs substringToIndex:impleArgs.length - 1] : impleArgs;
     NSString *declareDescription = [NSString stringWithFormat:@"%@(^)(%@)",self.returnDecription,declareArgs];
     NSString *impleDescription = [NSString stringWithFormat:@"^%@(%@)",self.returnDecription,impleArgs];
-    return [NSString stringWithFormat:@"\n[Declare]%@\n[Imple]%@",declareDescription,impleDescription];
+    return [NSString stringWithFormat:@"\n----------------------[ZXBlockLogStart]----------------------\n[Block声明]%@\n[Block实现]%@\n-----------------------[ZXBlockLogEnd]-----------------------",declareDescription,impleDescription];
 }
 @end

@@ -7,7 +7,7 @@
 //  GitHub:https://github.com/SmileZXLee/ZXDataHandle
 
 #import "NSString+ZXDataConvert.h"
-#import "ZXDataHandle.h"
+#import "ZXDataHandleLog.h"
 @implementation NSString (ZXDataConvert)
 //json字符串转字典
 -(id)zx_jsonToDic{

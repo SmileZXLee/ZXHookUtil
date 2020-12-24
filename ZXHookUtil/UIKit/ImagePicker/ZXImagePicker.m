@@ -9,7 +9,6 @@
 #import "ZXImagePicker.h"
 #import "ZXHookUIGet.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <Photos/PhotosDefines.h>
 #import <Photos/PHPhotoLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/MobileCoreServices.h>

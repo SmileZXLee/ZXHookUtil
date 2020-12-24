@@ -7,7 +7,7 @@
 //  GitHub:https://github.com/SmileZXLee/ZXDataHandle
 
 #import "NSMutableArray+ZXSafetySet.h"
-#import "ZXDataHandle.h"
+#import "ZXDataHandleLog.h"
 @implementation NSMutableArray (ZXSafetySet)
 -(id)zx_arrSafetyObjAtIndex:(NSUInteger)index{
     if(index < self.count){
