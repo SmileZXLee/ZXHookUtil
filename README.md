@@ -8,7 +8,7 @@
 [ZXHookUtil addClassTrace:@"EncryptionTool"];
 
 ```
-![Image text](https://github.com/SmileZXLee/ZXHookUtil/blob/master/DemoImg/methodTrace.png?raw=true) 
+![Image text](http://www.zxlee.cn/github/ZXHookUtil/methodTrace.png) 
 Demo大致分析流程：获取登录控制器，获取登录按钮，打印按钮绑定事件定位登录函数，使用hopper分析登录函数汇编即可快速定位登录操作中使用到的网络请求类、加密类，为这些类添加方法追踪，打印结果：'['所连接的即为一组方法的call和return，方法中嵌套包含的即为此方法中调用的其他方法，添加追踪目标类即可自动追踪其内部方法调用与调用层级并打印，加密协议已一目了然。
 
 ### 直接获取当前控制器的按钮，无需关注页面UI层级
@@ -52,7 +52,7 @@ if(pwdTf){
 NSLog(ZXBlockLog(block));
 ```
 ***
-## 主要工具方法
+## 主要工具方法(类名为ZXHookUtil，使用[ZXHookUtil xxx]调用)
 ```objective-c
 #pragma mark - Foundation
 #pragma mark - BaseInfo
