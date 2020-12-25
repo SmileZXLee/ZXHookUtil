@@ -511,6 +511,8 @@
 		04517A2D2594DEC3008806BE /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				74D5BEE9221AD462006C9802 /* ANYMethodLog.h */,
+				74D5BEE8221AD462006C9802 /* ANYMethodLog.m */,
 				04517A322594DEC3008806BE /* NSObject+ZXHookClassUtil.h */,
 				04517A302594DEC3008806BE /* NSObject+ZXHookClassUtil.m */,
 				04517A332594DEC3008806BE /* ZXHookClass.h */,
@@ -737,8 +739,6 @@
 				74EC02332217AD9200EB2552 /* MDCycriptManager.m */,
 				74EC02352217AD9200EB2552 /* MDMethodTrace.h */,
 				74EC02372217AD9200EB2552 /* MDMethodTrace.m */,
-				74D5BEE9221AD462006C9802 /* ANYMethodLog.h */,
-				74D5BEE8221AD462006C9802 /* ANYMethodLog.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
