@@ -46,7 +46,7 @@ static id staticV;
     self.alpha = 0.0;
     self.frame = [UIScreen mainScreen].bounds;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[UIApplication sharedApplication].keyWindow addSubview:staticV];
+    [[UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject addSubview:staticV];
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1.0;
     } completion:^(BOOL finished) {

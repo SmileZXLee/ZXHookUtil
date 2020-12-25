@@ -29,7 +29,7 @@
 #import "ZXEncryption.h"
 #import "ZXBlockLog.h"
 
-#define ZXToast(str) [[UIApplication sharedApplication].keyWindow makeToast:[NSString stringWithFormat:@"%@",str] duration:1.5 position:CSToastPositionCenter]
+#define ZXToast(str) [[UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject makeToast:[NSString stringWithFormat:@"%@",str] duration:1.5 position:CSToastPositionCenter]
 @interface ZXHookUtil : NSObject
 +(instancetype)sharedInstance;
 @property(nonatomic, strong)NSMutableDictionary *allProNameList;

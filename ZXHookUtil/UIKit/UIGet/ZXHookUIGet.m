@@ -148,7 +148,7 @@
     
 }
 +(UIWindow *)getKeyWindow{
-    return [UIApplication sharedApplication].keyWindow;
+    return ([UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject);
 }
 +(UIViewController *)getRootVC{
     return [self getKeyWindow].rootViewController;

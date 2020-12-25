@@ -277,7 +277,7 @@
 #pragma mark - UIKit
 #pragma mark - Toast
 +(void)showToast:(id)obj{
-    [[UIApplication sharedApplication].keyWindow makeToast:[NSString stringWithFormat:@"%@",obj] duration:1.5 position:CSToastPositionCenter];
+    [[UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject makeToast:[NSString stringWithFormat:@"%@",obj] duration:1.5 position:CSToastPositionCenter];
 }
 #pragma mark - UIGet
 #pragma mark 获取对应类型UI recursive：是否递归 type：查找的UIType类型
@@ -342,7 +342,7 @@
         callBack(weakBtn);
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[UIApplication sharedApplication].keyWindow addSubview:btn];
+        [[UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject addSubview:btn];
     });
 }
 #pragma mark 获取按钮的所有点击事件方法
@@ -381,7 +381,8 @@
 }
 #pragma mark 获取当前显示的系统弹窗
 +(UIView *)getCurrentSysAlertV{
-    NSArray * arrayViews = [UIApplication sharedApplication].keyWindow.subviews;
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow ?: [UIApplication sharedApplication].windows.firstObject;
+    NSArray * arrayViews = keyWindow.subviews;
     for (UIView *subV in arrayViews) {
         if([subV isKindOfClass:[NSClassFromString(@"UITransitionView") class]]){
             for (UIView *sSubV in subV.subviews) {
