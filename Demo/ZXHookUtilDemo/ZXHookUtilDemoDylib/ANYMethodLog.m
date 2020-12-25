@@ -8,48 +8,6 @@
 //  https://github.com/qhd/ANYMethodLog.git
 //
 
-/*经实践打印出不同类型占的长度，放此以方便调试查看
- +---------------------------+------------+------------+--------+
- | type                      |  value(32) |  value(64) |  comp  |
- |---------------------------|------------|------------|--------|
- | sizeof(char)              |     1      |    1       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(int)               |     4      |    4       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(short)             |     2      |    2       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(long)              |     4      |    8       |   *    |
- |---------------------------|------------|------------|--------|
- | sizeof(long long)         |     8      |    8       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(unsigned char)     |     1      |    1       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(unsigned int)      |     4      |    4       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(unsigned short)    |     2      |    2       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(unsigned long)     |     4      |    8       |   *    |
- |---------------------------|------------|------------|--------|
- | sizeof(unsigned long long)|     8      |    8       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(float)             |     4      |    4       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(double)            |     8      |    8       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(BOOL)              |     1      |    1       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(void)              |     1      |    1       |        |
- |---------------------------|------------|------------|--------|
- | sizeof(char*)             |     4      |    8       |   *    |
- |---------------------------|------------|------------|--------|
- | sizeof(id)                |     4      |    8       |   *    |
- |---------------------------|------------|------------|--------|
- | sizeof(Class)             |     4      |    8       |   *    |
- |---------------------------|------------|------------|--------|
- | sizeof(SEL)               |     4      |    8       |   *    |
- +---------------------------+------------+------------+--------+
- */
-
 #import "ANYMethodLog.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -214,8 +172,11 @@ NSDictionary *qhd_canHandleTypeDic() {
                 [NSString stringWithUTF8String:@encode(CGAffineTransform)] : @"(CGAffineTransform)",
                 [NSString stringWithUTF8String:@encode(UIOffset)] : @"(UIOffset)",
                 [NSString stringWithUTF8String:@encode(UIEdgeInsets)] : @"(UIEdgeInsets)",
+                @"o^@" : @"(id*)",
                 @"@?":@"(block)" // block类型
                 };//TODO:添加其他类型
+        
+        DEV_LOG(@"arg types:%@", dic);
     });
     return dic;
 }
@@ -284,6 +245,7 @@ BOOL qhd_isCanHook(Method method, const char *returnType) {
         method_getArgumentType(method, k, argument, sizeof(argument));
         NSString *argumentString = [NSString stringWithUTF8String:argument];
         if (!qhd_isCanHandle(argumentString)) {
+            DEV_LOG(@"unknow arg type:%@", argumentString);
             isCanHook = NO;
             break;
         }
@@ -398,6 +360,17 @@ NSArray *qhd_method_arguments(NSInvocation *invocation) {
             __unsafe_unretained id arg_temp;
             [invocation getArgument:&arg_temp atIndex:i];
             arg = arg_temp;
+            if (!arg) {
+                arg = @"nil";
+            }
+        }
+        else if (0 == strcmp(argumentType, "o^@")) {
+            void ** arg_temp;
+            [invocation getArgument:&arg_temp atIndex:i];
+            arg = (__bridge id)(*arg_temp);
+            if (!arg) {
+                arg = @"*nil";
+            }
         }
         else if (0 == strcmp(argumentType, @encode(SEL))) {
             SEL arg_temp;
@@ -421,7 +394,7 @@ NSArray *qhd_method_arguments(NSInvocation *invocation) {
         }
         
         if (!arg) {
-            arg = @"unknown";
+            arg = [NSString stringWithFormat:@"%s:unknown", argumentType];
         }
         [argList addObject:arg];
     }
