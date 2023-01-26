@@ -242,6 +242,13 @@
  */
 +(void)handleRequest:(requestBlock)block;
 
+/**
+ 拦截全局请求及响应
+ @param requestBlock 请求回调，requestBlock返回修改后的请求
+ @param responseBlock 响应回调，responseBlock返回修改后响应的NSData数据
+ */
++(void)handleRequest:(requestBlock)requestBlock responseBlock:(responseBlock)responseBlock;
+
 #pragma mark - 添加轮询
 /**
  添加轮询

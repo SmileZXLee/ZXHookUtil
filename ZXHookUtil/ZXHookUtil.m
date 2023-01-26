@@ -238,6 +238,10 @@
 +(void)handleRequest:(requestBlock)block{
     [ZXRequestBlock handleRequest:block];
 }
+#pragma mark - 全局请求与响应拦截/修改
++(void)handleRequest:(requestBlock)requestBlock responseBlock:(responseBlock)responseBlock{
+    [ZXRequestBlock handleRequest:requestBlock responseBlock:responseBlock];
+}
 #pragma mark - 添加轮询
 +(ZXPoll *)addTimerWithSec:(long)sec callBack:(pollPerStepBlock)pollPerStepBlock{
     ZXPoll *poll = [[ZXPoll alloc]init];
