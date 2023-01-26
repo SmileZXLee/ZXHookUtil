@@ -1,19 +1,24 @@
 # ZXHookUtil
+
 ### 项目中引用或参照的第三方库:[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)、[ANYMethodLog](https://github.com/qhd/ANYMethodLog)、[CocoaSecurity](https://github.com/kelp404/CocoaSecurity)、[Base64](https://github.com/nicklockwood/Base64)、[mjcript](https://github.com/CoderMJLee/mjcript)、[ImagePicker](https://www.jianshu.com/p/d87ffcbbb53b)
+
 ## Demo
+
 ### 使用方法追踪分析sign校验规则，下图为hook测试App的截图，ZXHookUtilTestApp项目即为测试App。
+
 ```objective-c
 [ZXHookUtil addClassTrace:@"LoginVC" jsonClassList:@[@"LoginModel"]];
 [ZXHookUtil addClassTrace:@"HttpRequest"];
 [ZXHookUtil addClassTrace:@"EncryptionTool"];
-
 ```
+
 ![Image text](http://www.zxlee.cn/github/ZXHookUtil/methodTrace.png)  
 Demo大致分析流程：获取登录控制器，获取登录按钮，打印按钮绑定事件定位登录函数，使用hopper分析登录函数汇编即可快速定位登录操作中使用到的网络请求类、加密类，为这些类添加方法追踪，打印结果：'['所连接的即为一组方法的call和return，方法中嵌套包含的即为此方法中调用的其他方法，添加追踪目标类即可自动追踪其内部方法调用与调用层级并打印，加密协议已一目了然。
 
 ### 直接获取当前控制器的按钮，无需关注页面UI层级
+
 ```objective-c
-//获取登录按钮
+//获取登录按钮（获取title为“登录”的按钮）
 NSArray *btnsArr = [ZXHookUtil getUIInView:loginVC.view text:@"登录" type:UITypeButton];
 if(btnsArr.count){
     UIButton *loginBtn = btnsArr[0];
@@ -22,9 +27,10 @@ if(btnsArr.count){
     //直接调用登录按钮的所有点击事件
     [ZXHookUtil callBtnActions:loginBtn];
 }
-
 ```
+
 ### 直接获取当前控制器的UITextField，无需关注页面UI层级
+
 ```objective-c
 UITextField *loginTf = [ZXHookUtil getTfInView:loginVC.view placeHolder:@"请输入用户名"];
 UITextField *pwdTf = [ZXHookUtil getTfInView:loginVC.view placeHolder:@"请输入密码"];
@@ -36,23 +42,55 @@ if(pwdTf){
 }
 
 ```
-### 拦截或修改全局请求
+
+### 拦截全局请求
+
 ```objective-c
-[ZXHookUtil handleRequest:^NSURLRequest *(NSURLRequest *request) {
-        NSLog(@"%@",request);
-        return request;
-    }];
+[ZXRequestBlock handleRequest:^NSURLRequest *(NSURLRequest *request) {
+    //拦截回调在异步线程
+    NSLog(@"拦截到请求-%@",request);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.blockTv.text = [self.blockTv.text stringByAppendingString:[NSString stringWithFormat:@"拦截到请求--%@\n",request]];
+    });
+    //在这里可以将request赋值给可变的NSURLRequest，进行一些修改（例如根据request的url过滤单独对一些请求的请求体进行修改等）然后再return，达到修改request的目的。
+    return request;
+}];
 ```
+
+### 拦截全局请求与响应
+
+```objc
+[ZXRequestBlock handleRequest:^NSURLRequest *(NSURLRequest *request) {
+    //拦截请求处理
+    return request;
+} responseBlock:^NSData *(NSURLResponse *response, NSData *data) {
+    //拦截响应数据
+    //如果为http请求，则响应为NSHTTPURLResponse，可进行强制转换
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    NSLog(@"拦截到响应url-%@", httpResponse.URL);
+    NSLog(@"拦截到响应数据-%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //这里返回的data就是最终的响应数据，可以自行修改
+    //可以通过[str dataUsingEncoding:NSUTF8StringEncoding];来将字符串转NSData
+    return data;
+}];   
+```
+
 ### 清除keychain数据
+
 ```objective-c
 [ZXHookUtil clearKeyChain];
 ```
+
 ### 打印block参数，具体例子参见[ZXBlockLog](https://github.com/SmileZXLee/ZXBlockLog)
+
 ```objective-c
 NSLog(ZXBlockLog(block));
 ```
+
 ***
+
 ## 主要工具方法(类名为ZXHookUtil，使用[ZXHookUtil xxx]调用)
+
 ```objective-c
 #pragma mark - Foundation
 #pragma mark - BaseInfo
@@ -502,4 +540,6 @@ NSLog(ZXBlockLog(block));
  */
 +(void)showImg:(UIImage *)img;
 ```
+
 ## TODO：添加其他便捷的工具函数，提高逆向分析效率
+
