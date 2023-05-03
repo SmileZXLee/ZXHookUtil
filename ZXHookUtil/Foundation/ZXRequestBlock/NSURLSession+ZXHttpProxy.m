@@ -5,7 +5,7 @@
 //  Created by 李兆祥 on 2019/4/10.
 //  Copyright © 2019 李兆祥. All rights reserved.
 //  https://github.com/SmileZXLee/ZXRequestBlock
-//  V1.0.3
+//  V1.0.4
 
 #import "NSURLSession+ZXHttpProxy.h"
 #import "ZXURLProtocol.h"
@@ -32,7 +32,7 @@ static BOOL isDisableHttpProxy = NO;
                                     delegate:(nullable id<NSURLSessionDelegate>)delegate
                                delegateQueue:(nullable NSOperationQueue *)queue{
     if (!configuration){
-        configuration = [[NSURLSessionConfiguration alloc] init];
+        configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     }
     if(isDisableHttpProxy){
         configuration.connectionProxyDictionary = @{};
